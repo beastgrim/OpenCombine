@@ -20,6 +20,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(CurrentValueSubjectTests.allTests),
         testCase(DecodeTests.allTests),
         testCase(DeferredTests.allTests),
+        testCase(DispatchQueueSchedulerTests.allTests),
         testCase(DropWhileTests.allTests),
         testCase(EmptyTests.allTests),
         testCase(EncodeTests.allTests),
