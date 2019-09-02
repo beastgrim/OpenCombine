@@ -65,10 +65,6 @@ extension DispatchQueue {
                 return .init(dispatchTime + stride.timeInterval)
             }
 
-            public static func == (lhs: SchedulerTimeType,
-                                   rhs: SchedulerTimeType) -> Bool {
-                return lhs.dispatchTime == rhs.dispatchTime
-            }
 
             public func hash(into hasher: inout Hasher) {
                 hasher.combine(dispatchTime.rawValue)
@@ -160,7 +156,7 @@ extension DispatchQueue {
                 /// - Parameter exactly: A binary integer representing a time interval.
                 public init?<Source: BinaryInteger>(exactly source: Source) {
                     guard let value = Int(exactly: source) else { return nil }
-                    self = .seconds(value)
+                    self = .nanoseconds(value)
                 }
 
                 public static func < (lhs: Stride, rhs: Stride) -> Bool {
@@ -168,27 +164,30 @@ extension DispatchQueue {
                 }
 
                 public static func * (lhs: Stride, rhs: Stride) -> Stride {
-                    return Stride(magnitude: lhs.magnitude * rhs.magnitude)
+                    // A bug in Combine, should be nanoseconds (FB7189676)
+                    return .seconds(lhs.magnitude * rhs.magnitude)
                 }
 
                 public static func + (lhs: Stride, rhs: Stride) -> Stride {
-                    return Stride(magnitude: lhs.magnitude + rhs.magnitude)
+                    // A bug in Combine, should be nanoseconds (FB7189676)
+                    return .seconds(lhs.magnitude + rhs.magnitude)
                 }
 
                 public static func - (lhs: Stride, rhs: Stride) -> Stride {
-                    return Stride(magnitude: lhs.magnitude - rhs.magnitude)
+                    // A bug in Combine, should be nanoseconds (FB7189676)
+                    return .seconds(lhs.magnitude - rhs.magnitude)
                 }
 
                 public static func -= (lhs: inout Stride, rhs: Stride) {
-                    lhs.magnitude -= rhs.magnitude
+                    lhs = lhs - rhs
                 }
 
                 public static func *= (lhs: inout Stride, rhs: Stride) {
-                    lhs.magnitude *= rhs.magnitude
+                    lhs = lhs * rhs
                 }
 
                 public static func += (lhs: inout Stride, rhs: Stride) {
-                    lhs.magnitude += rhs.magnitude
+                    lhs = lhs + rhs
                 }
 
                 public static func seconds(_ value: Double) -> Stride {
@@ -209,14 +208,6 @@ extension DispatchQueue {
 
                 public static func nanoseconds(_ value: Int) -> Stride {
                     return Stride(magnitude: value)
-                }
-
-                public init(from decoder: Decoder) throws {
-                    fatalError()
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    fatalError()
                 }
             }
         }

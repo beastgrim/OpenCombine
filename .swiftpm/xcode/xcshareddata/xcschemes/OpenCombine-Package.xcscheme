@@ -48,20 +48,6 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OpenCombineDispatchTests"
-               BuildableName = "OpenCombineDispatchTests"
-               BlueprintName = "OpenCombineDispatchTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -70,15 +56,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OpenCombineDispatch"
-            BuildableName = "OpenCombineDispatch"
-            BlueprintName = "OpenCombineDispatch"
-            ReferencedContainer = "container:">
-         </BuildableReference>
-      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -87,16 +64,6 @@
                BlueprintIdentifier = "OpenCombineTests"
                BuildableName = "OpenCombineTests"
                BlueprintName = "OpenCombineTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OpenCombineDispatchTests"
-               BuildableName = "OpenCombineDispatchTests"
-               BlueprintName = "OpenCombineDispatchTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
