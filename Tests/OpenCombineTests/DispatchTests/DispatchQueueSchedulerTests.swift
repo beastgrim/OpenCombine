@@ -140,29 +140,6 @@ final class DispatchQueueSchedulerTests: XCTestCase {
         XCTAssertEqual(Stride(.microseconds(56)).magnitude, 56000)
         XCTAssertEqual(Stride(.nanoseconds(78)).magnitude, 78)
         XCTAssertEqual(Stride(.never).magnitude, .max)
-
-        do {
-            // @unknown default branch
-
-            enum MyDispatchTimeInterval {
-                case seconds(Int)
-                case milliseconds(Int)
-                case microseconds(Int)
-                case nanoseconds(Int)
-                case never
-                case unknownCase
-            }
-
-            guard MemoryLayout<MyDispatchTimeInterval>.size ==
-                MemoryLayout<DispatchTimeInterval>.size else {
-                XCTFail("This hack doesn't work anymore. Remove the check below.")
-                return
-            }
-
-            let interval = unsafeBitCast(MyDispatchTimeInterval.unknownCase,
-                                         to: DispatchTimeInterval.self)
-            XCTAssertEqual(Stride(interval).magnitude, .max)
-        }
     }
 
     func testStrideFromNumericValue() {
